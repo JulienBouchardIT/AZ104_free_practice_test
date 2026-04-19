@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AZ-104 Practice Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <main class="layout">
+      <header class="hero">
+        <p class="eyebrow">GitHub Pages • JSON Driven</p>
+        <h1>Questionnaire AZ-104</h1>
+        <p class="subtitle">
+          Répondez aux questions, puis consultez les explications et la documentation
+          officielle Microsoft associée à chaque sujet.
+        </p>
+      </header>
+
+      <section class="card" aria-live="polite">
+        <div id="quiz-meta" class="quiz-meta"></div>
+        <form id="quiz-form" class="quiz-form"></form>
+
+        <div class="actions">
+          <button id="submit-btn" type="button" class="btn btn-primary">
+            Corriger le questionnaire
+          </button>
+          <button id="retry-btn" type="button" class="btn btn-secondary" hidden>
+            Recommencer
+          </button>
+        </div>
+
+        <section id="result" class="result" hidden></section>
+      </section>
+    </main>
+
+    <template id="question-template">
+      <article class="question-card">
+        <h2 class="question-title"></h2>
+        <div class="options"></div>
+        <section class="feedback" hidden>
+          <p class="feedback-status"></p>
+          <p class="feedback-text"></p>
+          <a class="feedback-link" href="#" target="_blank" rel="noopener noreferrer">
+            Voir la documentation officielle
+          </a>
+        </section>
+      </article>
+    </template>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

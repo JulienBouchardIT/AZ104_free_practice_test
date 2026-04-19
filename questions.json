@@ -1,0 +1,98 @@
+[
+  {
+    "question": "Quel service Azure permet de stocker des fichiers accessibles via SMB ?",
+    "choices": [
+      "Azure Blob Storage",
+      "Azure Files",
+      "Azure Queue Storage",
+      "Azure Event Hubs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Azure Files fournit des partages de fichiers managés compatibles SMB et NFS.",
+    "docUrl": "https://learn.microsoft.com/azure/storage/files/storage-files-introduction"
+  },
+  {
+    "question": "Quel role RBAC permet de gerer l'acces utilisateur aux ressources sans modifier ces ressources ?",
+    "choices": [
+      "Reader",
+      "Contributor",
+      "User Access Administrator",
+      "Owner"
+    ],
+    "correctIndex": 2,
+    "explanation": "User Access Administrator est concu pour administrer les attributions d'acces Azure RBAC.",
+    "docUrl": "https://learn.microsoft.com/azure/role-based-access-control/built-in-roles"
+  },
+  {
+    "question": "Quel composant est utilise pour connecter un reseau local a un VNet Azure via un tunnel chiffre ?",
+    "choices": [
+      "Azure Bastion",
+      "VPN Gateway",
+      "Application Gateway",
+      "Traffic Manager"
+    ],
+    "correctIndex": 1,
+    "explanation": "VPN Gateway etabli des connexions VPN site-a-site ou point-a-site avec chiffrement.",
+    "docUrl": "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways"
+  },
+  {
+    "question": "Quelle fonctionnalite permet d'appliquer automatiquement des regles de conformite sur les ressources Azure ?",
+    "choices": [
+      "Azure Policy",
+      "Azure Monitor",
+      "Azure Advisor",
+      "Azure Blueprints"
+    ],
+    "correctIndex": 0,
+    "explanation": "Azure Policy evalue et applique des regles afin de maintenir la conformite des ressources.",
+    "docUrl": "https://learn.microsoft.com/azure/governance/policy/overview"
+  },
+  {
+    "question": "Quelle option augmente la disponibilite d'une VM en la repartissant sur plusieurs zones ?",
+    "choices": [
+      "Availability Set",
+      "Availability Zones",
+      "Scale Set manuel",
+      "Dedicated Host"
+    ],
+    "correctIndex": 1,
+    "explanation": "Availability Zones distribue les instances entre des zones physiques separees d'une region.",
+    "docUrl": "https://learn.microsoft.com/azure/reliability/availability-zones-overview"
+  },
+  {
+    "question": "Quel service centralise les journaux et metriques pour surveiller vos ressources Azure ?",
+    "choices": [
+      "Azure Monitor",
+      "Azure Lighthouse",
+      "Azure Arc",
+      "Azure DevOps"
+    ],
+    "correctIndex": 0,
+    "explanation": "Azure Monitor collecte metriques, logs et alertes pour observer la sante des ressources.",
+    "docUrl": "https://learn.microsoft.com/azure/azure-monitor/overview"
+  },
+  {
+    "question": "Quel type de stockage est optimise pour les donnees non structurees comme images et sauvegardes ?",
+    "choices": [
+      "File Storage",
+      "Queue Storage",
+      "Blob Storage",
+      "Table Storage"
+    ],
+    "correctIndex": 2,
+    "explanation": "Blob Storage est concu pour stocker de grands volumes d'objets non structures.",
+    "docUrl": "https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction"
+  },
+  {
+    "question": "Quel service Azure permet de gerer des secrets, cles et certificats de maniere securisee ?",
+    "choices": [
+      "Azure Key Vault",
+      "Microsoft Entra ID",
+      "Azure Firewall",
+      "Azure Front Door"
+    ],
+    "correctIndex": 0,
+    "explanation": "Azure Key Vault centralise la gestion securisee des secrets et des cles de chiffrement.",
+    "docUrl": "https://learn.microsoft.com/azure/key-vault/general/overview"
+  }
+]
