@@ -32,9 +32,17 @@
 
       <section class="card" aria-live="polite">
         <div id="quiz-meta" class="quiz-meta"></div>
-        <form id="quiz-form" class="quiz-form"></form>
+        <section id="quiz-setup" class="quiz-setup">
+          <label for="question-count" class="setup-label">Nombre de questions</label>
+          <div class="setup-controls">
+            <input id="question-count" class="setup-input" type="number" min="1" step="1" />
+            <button id="start-btn" type="button" class="btn btn-primary">Commencer</button>
+          </div>
+        </section>
 
-        <div class="actions">
+        <form id="quiz-form" class="quiz-form" hidden></form>
+
+        <div class="actions" id="quiz-actions" hidden>
           <button id="submit-btn" type="button" class="btn btn-primary">
             Corriger le questionnaire
           </button>

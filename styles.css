@@ -138,6 +138,42 @@ h1 {
   font-weight: 500;
 }
 
+.quiz-setup {
+  border: 1px solid var(--ink-soft);
+  border-radius: 12px;
+  padding: 0.9rem;
+  background: color-mix(in srgb, var(--card) 82%, #ffffff 18%);
+}
+
+.setup-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.setup-controls {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.setup-input {
+  width: 140px;
+  border: 1px solid var(--ink-soft);
+  border-radius: 10px;
+  padding: 0.58rem 0.7rem;
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+}
+
+.setup-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
 .quiz-form {
   display: grid;
   gap: 1rem;

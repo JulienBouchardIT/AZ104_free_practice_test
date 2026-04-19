@@ -1,5 +1,9 @@
 const quizMeta = document.getElementById("quiz-meta");
+const quizSetup = document.getElementById("quiz-setup");
+const questionCountInput = document.getElementById("question-count");
+const startBtn = document.getElementById("start-btn");
 const quizForm = document.getElementById("quiz-form");
+const quizActions = document.getElementById("quiz-actions");
 const submitBtn = document.getElementById("submit-btn");
 const retryBtn = document.getElementById("retry-btn");
 const result = document.getElementById("result");
@@ -7,6 +11,8 @@ const questionTemplate = document.getElementById("question-template");
 const themeToggleBtn = document.getElementById("theme-toggle");
 
 let questions = [];
+let allQuestions = [];
+let selectedQuestionCount = 0;
 const THEME_STORAGE_KEY = "az104-theme";
 
 const getInitialTheme = () => {
@@ -53,6 +59,32 @@ const buildOption = (questionIndex, option, optionIndex) => {
       <span>${safeOption}</span>
     </label>
   `;
+};
+
+const shuffle = (items) => {
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [copy[index], copy[randomIndex]] = [copy[randomIndex], copy[index]];
+  }
+  return copy;
+};
+
+const pickRandomQuestions = (source, count) => shuffle(source).slice(0, count);
+
+const launchQuiz = (count) => {
+  selectedQuestionCount = count;
+  questions = pickRandomQuestions(allQuestions, count);
+
+  quizSetup.hidden = true;
+  quizForm.hidden = false;
+  quizActions.hidden = false;
+  result.hidden = true;
+  result.textContent = "";
+
+  submitBtn.disabled = false;
+  retryBtn.hidden = true;
+  renderQuiz(questions);
 };
 
 const renderQuiz = (data) => {
@@ -115,20 +147,11 @@ const showFeedback = (answers) => {
 };
 
 const resetQuiz = () => {
-  const checkedInputs = quizForm.querySelectorAll("input[type=radio]:checked");
-  checkedInputs.forEach((input) => {
-    input.checked = false;
-  });
+  if (!selectedQuestionCount) {
+    return;
+  }
 
-  const feedbackBlocks = quizForm.querySelectorAll(".feedback");
-  feedbackBlocks.forEach((block) => {
-    block.hidden = true;
-  });
-
-  submitBtn.disabled = false;
-  retryBtn.hidden = true;
-  result.hidden = true;
-  result.textContent = "";
+  launchQuiz(selectedQuestionCount);
 };
 
 const loadQuestions = async () => {
@@ -149,14 +172,32 @@ const init = async () => {
   initThemeToggle();
 
   try {
-    questions = await loadQuestions();
-    renderQuiz(questions);
+    allQuestions = await loadQuestions();
   } catch (error) {
     quizMeta.textContent = "Erreur de chargement du questionnaire.";
     quizForm.innerHTML = `<p>${escapeHtml(error.message)}</p>`;
+    quizSetup.hidden = true;
     submitBtn.disabled = true;
     return;
   }
+
+  const maxQuestions = allQuestions.length;
+  questionCountInput.max = String(maxQuestions);
+  questionCountInput.value = String(maxQuestions);
+  quizMeta.textContent = `Choisissez entre 1 et ${maxQuestions} questions pour commencer.`;
+
+  startBtn.addEventListener("click", () => {
+    const rawValue = Number(questionCountInput.value);
+    const requestedCount = Number.isFinite(rawValue) ? Math.floor(rawValue) : 0;
+
+    if (requestedCount < 1 || requestedCount > maxQuestions) {
+      result.hidden = false;
+      result.textContent = `Veuillez entrer un nombre entre 1 et ${maxQuestions}.`;
+      return;
+    }
+
+    launchQuiz(requestedCount);
+  });
 
   submitBtn.addEventListener("click", () => {
     const answers = getSelectedAnswers();
