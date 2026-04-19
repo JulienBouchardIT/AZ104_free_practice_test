@@ -1,6 +1,9 @@
 # AZ104 Free Practice Test
 
-Questionnaire statique compatible GitHub Pages.
+Ce projet est simplement un examen de pratique pour la certification AZ-104.
+
+Lien vers la page en ligne :
+https://julienbouchardit.github.io/AZ104_free_practice_test/
 
 ## Contenu
 
@@ -24,11 +27,3 @@ Editez `questions.json` avec ce schema :
 	}
 ]
 ```
-
-## Publier sur GitHub Pages
-
-1. Poussez ce dossier sur un repository GitHub.
-2. Ouvrez Settings > Pages.
-3. Dans Build and deployment, choisissez Deploy from a branch.
-4. Selectionnez la branche principale (`main`) et le dossier racine (`/root`).
-5. Enregistrez puis ouvrez l'URL GitHub Pages fournie.
