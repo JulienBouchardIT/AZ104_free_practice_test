@@ -4,8 +4,38 @@ const submitBtn = document.getElementById("submit-btn");
 const retryBtn = document.getElementById("retry-btn");
 const result = document.getElementById("result");
 const questionTemplate = document.getElementById("question-template");
+const themeToggleBtn = document.getElementById("theme-toggle");
 
 let questions = [];
+const THEME_STORAGE_KEY = "az104-theme";
+
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  if (savedTheme === "dark" || savedTheme === "light") {
+    return savedTheme;
+  }
+
+  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return systemPrefersDark ? "dark" : "light";
+};
+
+const applyTheme = (theme) => {
+  document.body.dataset.theme = theme;
+  const nextTheme = theme === "dark" ? "light" : "dark";
+  themeToggleBtn.textContent = `Passer en ${nextTheme}`;
+};
+
+const initThemeToggle = () => {
+  const theme = getInitialTheme();
+  applyTheme(theme);
+
+  themeToggleBtn.addEventListener("click", () => {
+    const currentTheme = document.body.dataset.theme === "dark" ? "dark" : "light";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    applyTheme(nextTheme);
+  });
+};
 
 const escapeHtml = (value) =>
   String(value)
@@ -116,6 +146,8 @@ const loadQuestions = async () => {
 };
 
 const init = async () => {
+  initThemeToggle();
+
   try {
     questions = await loadQuestions();
     renderQuiz(questions);
